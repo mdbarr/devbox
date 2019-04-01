@@ -19,6 +19,7 @@ RUN apt-get update && \
         less \
         libtool \
         manpages \
+        nano \
         netbase \
         openssh-client \
         shared-mime-info \
@@ -34,6 +35,7 @@ RUN apt-get update && \
         apt-get autoremove && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* && \
+        npm install -g forever fx && \
         useradd -m -d /home/mark mark
 
 USER mark
