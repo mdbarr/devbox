@@ -13,17 +13,28 @@
         cl-lib-highlight
         cl-libify
         company
+        company-nginx
+        company-shell
+        company-web
         docker-compose-mode
         dockerfile-mode
+        editorconfig
+        flycheck
+        flycheck-bashate
+        flycheck-css-colorguard
+        flycheck-popup-tip
+        flycheck-yamllint
         groovy-mode
         js2-mode
+        json-mode
         mode-icons
         multi-web-mode
         nginx-mode
         powerline
         slack
         typescript-mode
-        vue-mode))
+        vue-mode
+        yaml-mode))
 
 ;; fetch the list of packages available
 (or (file-exists-p package-user-dir)
@@ -83,6 +94,30 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (setq js2-basic-offset 2)
 (setq js2-indent-switch-body t)
+(set-face-attribute 'js2-function-call nil :foreground "CadetBlue")
+(set-face-attribute 'js2-object-property nil :foreground "SteelBlue")
+
+;; Flycheck
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint
+          (and root
+               (expand-file-name "node_modules/.bin/eslint"
+                                 root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+(global-flycheck-mode)
+(setq-default flycheck-disabled-checkers '(javascript-jshint))
+(flycheck-add-mode 'javascript-eslint 'js2-mode)
+
+;; Company mode
+(global-company-mode)
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; Line numbers
 (global-linum-mode)
