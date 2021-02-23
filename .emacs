@@ -88,6 +88,7 @@
 
 ;; JavaScript indentatioon
 (setq js-indent-level 2)
+(setq js-switch-indent-offset 2)
 
 ;; js2-mode
 (require 'js2-mode)
