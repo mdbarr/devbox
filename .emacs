@@ -47,10 +47,13 @@
 
 ;; Menu Bars are not for winners
 (menu-bar-mode -1)
-;; Disable backup
-(setq backup-inhibited t)
-;; Disable auto save
-(setq auto-save-default nil)
+
+;; Store auto saves out of the way
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+;; Don't create lock files
+(setq create-lockfiles nil)
+
 ;; No Tabs and default indents
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
