@@ -1,7 +1,8 @@
+;;; .emacs
+
 ;; Melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -9,13 +10,14 @@
 (setq package-list
       '(afternoon-theme
         all-the-icons
+        ascii-table
         cl-format
-        cl-lib-highlight
         cl-libify
         company
         company-nginx
         company-shell
         company-web
+        csharp-mode
         docker-compose-mode
         dockerfile-mode
         editorconfig
@@ -24,13 +26,17 @@
         flycheck-css-colorguard
         flycheck-popup-tip
         flycheck-yamllint
+        go-mode
         groovy-mode
         js2-mode
         json-mode
+        markdown-mode
         mode-icons
         multi-web-mode
         nginx-mode
+        pip-requirements
         powerline
+        puppet-mode
         slack
         typescript-mode
         vue-mode
@@ -82,9 +88,11 @@
 (setq mode-require-final-newline t)
 
 ;; Groovy
-(add-hook 'groovy-mode-hook
-          (lambda ()
-            (c-set-offset 'label 2)))
+(setq groovy-indent-offset 2)
+
+;; Java
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 4)))
 
 ;; Typescript
 (setq-default typescript-indent-level 2)
@@ -120,8 +128,8 @@
 (flycheck-add-mode 'javascript-eslint 'js2-mode)
 
 ;; Company mode
-(global-company-mode)
-(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+;; (global-company-mode)
+;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; Line numbers
 (global-linum-mode)
@@ -202,3 +210,17 @@ will be killed."
 (setq slack-buffer-emojify t)
 (setq slack-prefer-current-team t)
 ;; (slack-start)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(c-basic-offset 'set-from-style)
+ '(package-selected-packages
+   '(markdown-mode puppet-mode pip-requirements csharp-mode go-mode ascii-table vue-mode typescript-mode slack powerline nginx-mode multi-web-mode mode-icons json-mode js2-mode groovy-mode flycheck-yamllint flycheck-popup-tip flycheck-css-colorguard flycheck-bashate flycheck editorconfig dockerfile-mode docker-compose-mode company-web company-shell company-nginx company cl-libify cl-format all-the-icons afternoon-theme)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
