@@ -4,6 +4,7 @@ ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
 ENV LC_ALL="en_US.UTF-8"
 ENV TERM="xterm-256color"
+ENV TZ="America/New_York"
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -82,5 +83,6 @@ fi\n\
 \n\
 source /usr/share/powerline/bindings/bash/powerline.sh\n' >> /home/mark/.bashrc
 COPY --chown=mark .config /home/mark/.config
+COPY --chown=mark .gitconfig /home/mark/.gitconfig
 
 CMD [ "/bin/bash" ]
