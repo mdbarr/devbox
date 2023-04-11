@@ -81,5 +81,6 @@ RUN echo 'if [ -x "$(command -v yarn)" ]; then\n\
 fi\n\
 \n\
 source /usr/share/powerline/bindings/bash/powerline.sh\n' >> /home/mark/.bashrc
+COPY --chown=mark .config /home/mark/.config
 
 CMD [ "/bin/bash" ]
