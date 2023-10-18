@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"

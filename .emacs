@@ -132,14 +132,8 @@
 ;; (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; Line numbers
-(global-linum-mode)
-(set-face-attribute 'default nil :background "color-16")
-(set-face-attribute 'linum nil :foreground "Gray30" :background "color-16")
-(defadvice linum-update-window (around linum-dynamic activate)
-  (let* ((w (length (number-to-string
-                     (count-lines (point-min) (point-max)))))
-         (linum-format (concat "%" (number-to-string w) "d\u2502 ")))
-    ad-do-it))
+(global-display-line-numbers-mode)
+(set-face-attribute 'line-number nil :foreground "Gray30" :background "color-16")
 
 ;; Auto delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -185,6 +179,7 @@ will be killed."
 ;; Afernoon Theme (afternoon-theme)
 (load-theme 'afternoon t)
 (set-face-attribute 'mode-line-buffer-id nil :foreground "DeepSkyBlue1")
+(set-face-attribute 'default nil :background "color-16")
 
 ;; Powerline
 (require 'powerline)
@@ -203,13 +198,13 @@ will be killed."
 
 
 ;; slack
-(require 'alert)
-(setq alert-default-style 'notifier)
+;;(require 'alert)
+;;(setq alert-default-style 'notifier)
 
-(require 'slack)
-(setq slack-buffer-emojify t)
-(setq slack-prefer-current-team t)
-;; (slack-start)
+;;(require 'slack)
+;;(setq slack-buffer-emojify t)
+;;(setq slack-prefer-current-team t)
+;;(slack-start)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -217,7 +212,7 @@ will be killed."
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 'set-from-style)
  '(package-selected-packages
-   '(markdown-mode puppet-mode pip-requirements csharp-mode go-mode ascii-table vue-mode typescript-mode slack powerline nginx-mode multi-web-mode mode-icons json-mode js2-mode groovy-mode flycheck-yamllint flycheck-popup-tip flycheck-css-colorguard flycheck-bashate flycheck editorconfig dockerfile-mode docker-compose-mode company-web company-shell company-nginx company cl-libify cl-format all-the-icons afternoon-theme)))
+   '(markdown-mode puppet-mode pip-requirements csharp-mode go-mode ascii-table vue-mode typescript-mode slack powerline nginx-mode multi-web-mode mode-icons json-mode js2-mode groovy-mode flycheck-yamllint flycheck-popup-tip flycheck-css-colorguard flycheck-bashate flycheck editorconfig dockerfile-mode docker-compose-mode company-web company-shell company-nginx company cl-libify cl-lib-highlight cl-format all-the-icons afternoon-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
